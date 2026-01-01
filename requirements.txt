@@ -1,0 +1,22 @@
+# Python dependencies for InfoHub Chatbot Project
+# LangChain ecosystem for LLM integration
+
+# Core LangChain framework (updated for langserve compatibility)
+langchain>=0.0.333
+
+# OpenAI integration for embeddings and LLM
+openai==1.16.2
+
+# Vector store for embeddings
+chromadb==0.4.14
+
+# API deployment framework
+langserve[all]==0.0.30
+
+# Frontend framework for chatbot UI
+streamlit==1.27.2
+
+# Additional dependencies for LangChain functionality
+tiktoken>=0.5.1
+pydantic>=2.0.0
+requests>=2.31.0

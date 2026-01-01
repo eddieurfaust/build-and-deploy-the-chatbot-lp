@@ -1,0 +1,93 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets.toml
+.streamlit/secrets.toml
+
+# API Keys (IMPORTANT: Never commit API keys!)
+openai_api_key.txt
+api_keys.txt
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Chroma DB (if needed to ignore - currently keeping as it's provided)
+# chroma_db/
+
+# Logs
+*.log
+logs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Streamlit
+.streamlit/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# ChromaDB
+#chroma_db/
