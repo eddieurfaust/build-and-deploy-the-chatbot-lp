@@ -5,6 +5,7 @@ Interactive chatbot interface for LangChain documentation Q&A
 
 # Step 1: Setup - Import necessary modules
 import json
+import os
 
 import requests
 import streamlit as st
@@ -16,6 +17,18 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="auto",
 )
+
+
+# Helper function to get backend URL from secrets or environment
+def get_backend_url():
+    """Get backend URL from Streamlit secrets or environment variable"""
+    try:
+        # Try to get from Streamlit secrets (for Streamlit Cloud)
+        return st.secrets.get("BACKEND_URL", "http://localhost:8000")
+    except:
+        # Fallback to environment variable (for local development)
+        return os.getenv("BACKEND_URL", "http://localhost:8000")
+
 
 # App title and description
 st.title("🤖 InfoHub LangChain Chatbot")
@@ -53,8 +66,9 @@ def generate_response(user_message):
         str: The assistant's response
     """
     try:
-        # Backend API endpoint
-        api_url = "http://localhost:8000/chat/invoke"
+        # Backend API endpoint - configurable via secrets or environment variable
+        backend_url = get_backend_url()
+        api_url = f"{backend_url}/chat/invoke"
 
         # Prepare the payload
         payload = {"input": user_message}
@@ -79,7 +93,8 @@ def generate_response(user_message):
             )
 
     except requests.exceptions.ConnectionError:
-        return "Error: Could not connect to the server. Please make sure the LangServe server is running on http://localhost:8000"
+        backend_url = get_backend_url()
+        return f"Error: Could not connect to the server. Please make sure the LangServe server is running on {backend_url}"
     except requests.exceptions.Timeout:
         return "Error: The request timed out. Please try again."
     except Exception as e:
@@ -150,7 +165,8 @@ with st.sidebar:
 
     # Check server health
     try:
-        health_response = requests.get("http://localhost:8000/health", timeout=2)
+        backend_url = get_backend_url()
+        health_response = requests.get(f"{backend_url}/health", timeout=2)
         if health_response.status_code == 200:
             st.success("✅ Server is running")
         else:
